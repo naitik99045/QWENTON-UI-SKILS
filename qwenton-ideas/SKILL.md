@@ -1,92 +1,92 @@
 ---
 name: qwenton-ideas
-description: Discover and validate profitable app or web-product ideas from online evidence. Use for CLI or GUI agents asked to find new product ideas, turn complaints into MVP concepts, research niches, inspect competitors, or decide whether an idea is worth building.
+description: An autonomous idea-discovery and validation skill for CLI and GUI AI agents. Use it to find online evidence of painful workflows, turn those problems into app or web-product concepts, evaluate payment potential, and define the smallest MVP test.
 ---
 
-# Qwenton Ideas
+# Skill: qwenton-ideas
 
-Turn observed frustration into evidence-backed product opportunities. Prefer a small, paid problem over a clever feature or an unvalidated “cool app.”
+## Description
+An autonomous product-idea discovery and validation skill. This instructs the agent to research real user frustrations online, document existing workarounds, assess whether people may pay for a solution, inspect competition, and produce a focused MVP hypothesis instead of generic app ideas.
 
-## Operating rule
+---
 
-> Find demand that already exists; do not invent demand when the web can reveal it.
+## Instructions for the Agent
 
-Treat the video framework as a decision loop, not a promise that every complaint is a business:
+When this skill is invoked, execute the following workflow systematically. Do not invent demand, users, quotes, market numbers, tools, or integrations. Keep observed evidence separate from your inferences.
 
-1. **Find a real problem.** Start with a niche, audience, workflow, tool, or competitor—not a feature list. Look for people already trying to solve something.
-2. **Expose the workaround.** Document the current process. Pay special attention to spreadsheets, Notion pages, custom scripts, copy/paste between apps, repeated manual entry, and multi-step daily tasks. Convert the current “five steps” into the desired “one step.”
-3. **Mine public evidence.** Search where the target users speak in their own words:
-   - Reddit communities and forum threads
-   - Discord or other public community pages
-   - GitHub issues and feature requests
-   - YouTube comments and tutorial questions
-   - 1–3 star reviews of competing products
-   - Search results for complaint and workaround phrases
-4. **Validate the pain.** Prefer problems that make or save money, consume substantial time, create repeated frustration, or are already being solved with paid products or paid human labor.
-5. **Position against competition.** Existing products are demand evidence, not automatic disqualification. Identify a defensible wedge: simpler, cheaper, faster, more focused, better integrated, or one missing feature repeatedly requested in reviews.
-6. **Propose the smallest test.** Define an MVP that proves the risky assumption quickly. Recommend interviewing users, showing a clickable prototype, manually delivering the result, collecting waitlist/sign-up intent, or asking for a paid pilot before building a broad platform.
+### Phase 1: Total Context Ingestion
 
-## Agent workflow
+Locate, read, and synthesize the following context when available:
 
-### 1. Define the search brief
+1. **User brief:** Read the user request, target audience, niche, geography, language, platform, and business-model constraints.
+2. **Project context:** Inspect `README.md`, `prompt.txt`, `prd.txt`, `.agent/`, `.plan/`, `.skills/`, and relevant source files if the user is exploring an idea for an existing project.
+3. **Existing capabilities:** Inspect available browser, search, GitHub, API, MCP, and filesystem capabilities before choosing a research route.
+4. **Prior research:** Look for research ledgers, notes, citations, JSON records, or previous idea reports. Reuse them instead of repeating work.
 
-Capture:
+If the brief is open-ended, state the assumptions and generate a few niche directions before deep research. Avoid generic “AI wrapper” ideas without a specific painful workflow.
 
-- Target user or niche
-- Geography, language, and recency constraints
-- Product type or platform constraints
-- Preferred business model, if known
-- Whether the user wants a shortlist, one recommendation, or a research dossier
+### Phase 2: Problem Discovery and Evidence Collection
 
-If the brief is open-ended, generate several niche directions first, then investigate only the strongest few. Do not produce generic “AI wrapper” ideas without a specific painful workflow.
+Find problems people are already trying to solve.
 
-### 2. Search with the user’s language
+1. Search Reddit, public forums, Discord pages, GitHub issues, YouTube comments, product communities, and 1–3-star competitor reviews when accessible.
+2. Use the target user’s language and search phrases such as:
+   - “does anyone know a way to…”
+   - “I wish this could…”
+   - “why doesn’t this do…”
+   - “manual workaround”, “spreadsheet”, “copy paste”, “takes hours”
+   - “alternative to”, “missing feature”, “too expensive”
+3. Open source pages when possible. Do not treat search snippets as evidence.
+4. For each candidate, record the source URL, date, author or publication, firsthand quote or faithful paraphrase, and evidence type.
+5. Document the current workaround as a short sequence of steps. Look for spreadsheets, Notion pages, scripts, manual data transfer, repeated entry, or other “five steps to do one thing” patterns.
 
-Use queries combining the niche/tool with phrases such as:
+### Phase 3: Opportunity Analysis and Selection
 
-- “does anyone know a way to…”
-- “I wish this could…”
-- “why doesn’t this do…”
-- “manual workaround”
-- “spreadsheet” / “copy paste” / “takes hours”
-- “alternative to” / “missing feature” / “too expensive”
+Convert evidence into ranked opportunities.
 
-Search exact complaint language and paraphrases. Save the source URL, date, author or publication, relevant quote, and whether the evidence is firsthand. Do not treat search snippets as proof; open the source page when possible.
+1. Describe the user, painful job, trigger, current workflow, frequency, time or money cost, and existing workaround.
+2. Check the payment signal: existing paid tools, paid labor, lost revenue, saved time, reduced errors, or a serious recurring frustration.
+3. Inspect competitors. Treat existing solutions as evidence of demand, then identify a narrow wedge such as simpler, cheaper, faster, more focused, better integrated, or one repeatedly requested missing feature.
+4. Score each candidate from 0 to 5 on:
+   - **Pain:** seriousness of the frustration or business consequence
+   - **Frequency:** how often the problem recurs
+   - **Spend:** existing money or paid labor connected to it
+   - **Reachability:** ability to find and contact target users
+   - **Simplicity:** ability to reduce the workflow with a narrow MVP
+   - **Differentiation:** clarity of the product wedge
+   - **Evidence:** number and quality of independent firsthand signals
+5. Total the score out of 35 and label confidence **high**, **medium**, or **low**. Do not treat a high score as proof of willingness to pay.
+6. Select only the strongest few ideas. If evidence is weak, say **not enough evidence** instead of forcing a recommendation.
 
-### 3. Extract evidence, not vibes
+### Phase 4: MVP Definition and Validation Plan
 
-For every candidate, record:
+For every selected opportunity, define the smallest testable product.
 
-- **User and job:** who has the problem and what they are trying to accomplish
-- **Trigger:** the complaint, request, review, issue, or workaround
-- **Current workflow:** the smallest faithful sequence of steps
-- **Pain signal:** time, cost, error risk, lost revenue, compliance risk, or frustration
-- **Frequency:** one-off, weekly, daily, or every transaction
-- **Existing spend:** products, subscriptions, contractors, employees, or ad-hoc services already used
-- **Competition:** closest alternatives and their repeated weaknesses
-- **Unknowns:** claims requiring interviews or a live test
+1. State the one-step promise: which painful multi-step workflow the product removes or compresses.
+2. Define an MVP that can be tested without building a broad platform.
+3. Identify the buyer, a pricing hypothesis, and the risky assumption behind the idea.
+4. Recommend validation in priority order: user interviews, a clickable prototype, a concierge/manual service, a waitlist or sign-up test, a paid pilot, or a small pre-sale request where appropriate.
+5. List the evidence still missing and the result that would invalidate the idea.
+6. Do not recommend months of implementation before testing the riskiest assumption.
 
-Keep observed evidence separate from the agent’s inference. Attribute quotes and never invent users, numbers, demand, or willingness to pay.
+### Phase 5: Tool and MCP Routing
 
-### 4. Score and rank
+Use the best available authorized capability. Never fabricate a server, endpoint, API key, or tool schema.
 
-Score each candidate from 0–5, using evidence rather than optimism:
+1. **Web discovery:** Use an available web-search tool or authorized search MCP. Fall back to a browser or public web pages.
+2. **Dynamic pages:** Use an authorized browser MCP. Use URL fetching for static pages.
+3. **Reddit, Discord, reviews:** Use a configured source connector or API MCP if available. Otherwise sample public pages manually and disclose coverage limits.
+4. **GitHub issues:** Use the authorized GitHub connector or `gh` CLI. Fall back to public repository pages.
+5. **Clustering and scoring:** Use the host model or an authorized LLM tool. If unavailable, use transparent keyword grouping and mark it as approximate.
+6. **Ongoing monitoring:** Use a trigger or scheduler MCP only when the user asks for recurring monitoring. A one-time request needs no automation.
 
-| Dimension | Question |
-|---|---|
-| Pain | Is this a serious frustration or business consequence? |
-| Frequency | Does it recur often enough to matter? |
-| Spend | Is money or paid labor already involved? |
-| Reachability | Can the target users be found and contacted? |
-| Simplicity | Can a narrow MVP reduce the workflow substantially? |
-| Differentiation | Is there a clear wedge over existing options? |
-| Evidence | Are there multiple independent, firsthand signals? |
+Before calling any MCP, inspect available servers, read the complete tool schema, and use only authorized connectors. Respect rate limits, robots rules, privacy, and platform terms. Never collect private messages or sensitive personal data. Cross-check important claims across independent sources.
 
-Report the total out of 35, show the evidence behind each score, and label confidence as **high**, **medium**, or **low**. A high score never replaces validation.
+For GUI agents, keep a research ledger in the workspace and save source URLs in notes or tabs. For CLI agents, write structured Markdown or JSON records so another agent can resume without repeating research.
 
-### 5. Produce the idea brief
+### Phase 6: Idea Report
 
-For each shortlisted idea, output:
+Output one concise report per selected idea using this format:
 
 ```markdown
 ## [Specific product concept]
@@ -94,46 +94,31 @@ For each shortlisted idea, output:
 - **Painful job:** …
 - **Evidence:** links and short attributed excerpts
 - **Current workaround:** step 1 → step 2 → step 3 …
-- **One-step promise:** what the product removes or automates
-- **MVP:** the smallest testable product
-- **Buyer and pricing hypothesis:** who pays, why, and an initial test price
-- **Competition and wedge:** what exists and the narrow advantage
-- **Risks and unknowns:** what could invalidate the idea
-- **Validation plan:** 3–5 concrete tests in priority order
-- **Score:** X/35; confidence: …
+- **One-step promise:** …
+- **MVP:** …
+- **Buyer and pricing hypothesis:** …
+- **Competition and wedge:** …
+- **Risks and unknowns:** …
+- **Validation plan:** 3–5 tests in priority order
+- **Score:** X/35; confidence: high/medium/low
 ```
 
-Rank ideas by evidence-adjusted opportunity, not novelty. Say “not enough evidence” when appropriate.
+Rank ideas by evidence-adjusted opportunity, not novelty. Do not claim market size, demand, or willingness to pay from one anecdote, likes, or search volume alone.
 
-## Tool and MCP routing
+### Phase 7: Execution Report
 
-Use the best available authorized capability; never invent a server, endpoint, API key, or tool schema.
+Output a concise report to the terminal or chat.
 
-| Need | Preferred route | Fallback |
-|---|---|---|
-| Broad web discovery | Web search tool or an authorized search MCP | Browser/search engine or public web pages |
-| Open and inspect dynamic pages | Browser MCP | URL fetch for static pages |
-| Reddit, Discord, or review data | An authorized connector/API MCP for that source | Public pages and manual sampling; state coverage limits |
-| GitHub issues | GitHub connector/API or `gh` CLI when authorized | Public repository pages |
-| Repeated monitoring | Authorized trigger/scheduler MCP only when the user asks for ongoing monitoring | Perform a one-time research pass |
-| LLM clustering or scoring | The host agent’s model or an authorized LLM tool | Deterministic keyword grouping with explicit limitations |
+#### Summary Format:
 
-Before using an MCP:
+**Idea Discovery Complete: [Top Product Opportunity]**
+- **Sources Checked:** List the source types and key URLs.
+- **Problem Found:** State the painful workflow and current workaround.
+- **Payment Signal:** Explain the evidence that money, labor, time, or serious frustration is involved.
+- **Competition and Wedge:** State what exists and the proposed narrow differentiation.
+- **MVP to Test:** Describe the smallest product or concierge experiment.
+- **Score:** Provide the score out of 35 and confidence level.
+- **Open Risks:** List the assumptions requiring validation.
+- **Next Up:** State the single next validation action.
 
-1. Inspect the available MCP servers/tools for the needed capability.
-2. Read the full tool schema before calling it; do not guess arguments.
-3. Use only configured, authorized connectors. If a required source is unavailable, continue with public alternatives and disclose the gap.
-4. Respect rate limits, robots rules, privacy, and platform terms. Prefer public, aggregated evidence; do not collect private messages or sensitive personal data.
-5. Cross-check important claims across independent sources. A single viral post is a lead, not validation.
-
-For GUI agents, keep a research ledger in the workspace and use browser tabs or saved notes for URLs. For CLI agents, write structured JSON or Markdown records so another agent can resume without repeating research.
-
-## Guardrails
-
-- Do not confuse a fun learning project with a product someone will pay for.
-- Do not claim market size, demand, or willingness to pay from likes or one anecdote.
-- Do not build for months before testing the riskiest assumption.
-- Do not copy a competitor’s protected content or private data; use public observations to define an independent product.
-- Prefer a narrow workflow and a manual concierge test before an elaborate architecture.
-
-Source framework: distilled from the supplied SJCodes video, “How to come up with app ideas people will pay for” (YouTube: https://youtu.be/x9TFKNgaDjo). The source informs the problem/workaround/payment/competition loop; the tool-routing and scoring details above are implementation guidance for agents.
+Source framework: distilled from the supplied SJCodes YouTube video: https://youtu.be/x9TFKNgaDjo. The video contributes the problem, workaround, payment, competition, and MVP-validation loop; the tool routing and scoring are operational guidance for AI agents.
